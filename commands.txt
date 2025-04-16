@@ -1,0 +1,29 @@
+# 1. Become root
+sudo su
+
+# 2. Update all packages
+yum update -y
+
+# 3. Install Apache web server
+yum install -y httpd
+
+# 4. Move to the default web directory
+cd /var/www/html
+
+# 5. Download your GitHub repo as a ZIP
+wget https://github.com/legendyen/3-col-portfolio/archive/refs/heads/main.zip
+
+# 6. Unzip the downloaded file
+unzip main.zip
+
+# 7. Copy your site contents to the live directory
+cp -r 3-col-portfolio-main/* /var/www/html/
+
+# 8. Clean up the ZIP and temp folder
+rm -rf main.zip 3-col-portfolio-main
+
+# 9. Enable Apache to run on boot
+systemctl enable httpd
+
+# 10. Start the Apache server
+systemctl start httpd
